@@ -5,6 +5,7 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
+import { Feather } from "@expo/vector-icons";
 
 import ActionBar from "./ActionBar";
 
@@ -12,22 +13,28 @@ export default function PostCard({ post, navigation }) {
   return (
     <View style={styles.container}>
 
-      <TouchableOpacity
-        style={styles.header}
-        onPress={() => navigation.navigate("Profile")}
-      >
-        <Image
-          source={{
-            uri: "https://i.pravatar.cc/150?img=12",
-          }}
-          style={styles.avatar}
-        />
+      <View style={styles.header}>
+        <TouchableOpacity
+          style={styles.userInfo}
+          onPress={() => navigation.navigate("Profile")}
+        >
+          <Image
+            source={{
+              uri: "https://i.pravatar.cc/150?img=12",
+            }}
+            style={styles.avatar}
+          />
 
-        <View>
-          <Text style={styles.username}>cat_user</Text>
-          <Text style={styles.location}>Buenos Aires, Argentina</Text>
-        </View>
-      </TouchableOpacity>
+          <View>
+            <Text style={styles.username}>cat_user</Text>
+            <Text style={styles.location}>Buenos Aires, Argentina</Text>
+          </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity>
+          <Feather name="more-vertical" size={22} color="#333" />
+        </TouchableOpacity>
+      </View>
 
       <TouchableOpacity
         activeOpacity={0.95}
@@ -62,14 +69,20 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: "row",
     alignItems: "center",
-    padding: 10,
+    justifyContent: "space-between",
+    padding: 12,
+  },
+
+  userInfo: {
+    flexDirection: "row",
+    alignItems: "center",
   },
 
   avatar: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    marginRight: 10,
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    marginRight: 12,
   },
 
   username: {

@@ -1,4 +1,12 @@
-import { FlatList, Image, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  FlatList,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  Dimensions,
+} from "react-native";
+
+const IMAGE_SIZE = Dimensions.get("window").width / 3 - 2;
 
 export default function ProfileGrid({ data, navigation }) {
   return (
@@ -22,8 +30,8 @@ export default function ProfileGrid({ data, navigation }) {
 
 const styles = StyleSheet.create({
   image: {
-    width: 130,
-    height: 130,
+    width: IMAGE_SIZE,
+    height: IMAGE_SIZE,
     margin: 1,
   },
 });

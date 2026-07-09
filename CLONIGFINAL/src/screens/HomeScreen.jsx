@@ -1,7 +1,9 @@
-import { SafeAreaView, StyleSheet, FlatList } from "react-native";
+import { SafeAreaView, StyleSheet, FlatList, View } from "react-native";
 import { useEffect, useState } from "react";
 
 import Header from "../componentes/Header";
+import StoryBar from "../componentes/StoryBar";
+import FooterNav from "../componentes/FooterNav";
 import PostCard from "../componentes/PostCard";
 import { getCats } from "../services/catApi";
 
@@ -25,16 +27,22 @@ export default function HomeScreen({ navigation }) {
     <SafeAreaView style={styles.container}>
       <Header />
 
-      <FlatList
-        data={posts}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <PostCard
-            post={item}
-            navigation={navigation}
-          />
-        )}
-      />
+      <View style={styles.feedContainer}>
+        <FlatList
+          data={posts}
+          keyExtractor={(item) => item.id}
+          ListHeaderComponent={<StoryBar />}
+          ListHeaderComponentStyle={{ backgroundColor: "white" }}
+          renderItem={({ item }) => (
+            <PostCard
+              post={item}
+              navigation={navigation}
+            />
+          )}
+        />
+      </View>
+
+      <FooterNav />
     </SafeAreaView>
   );
 }
@@ -43,5 +51,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
+  },
+  feedContainer: {
+    flex: 1,
   },
 });
