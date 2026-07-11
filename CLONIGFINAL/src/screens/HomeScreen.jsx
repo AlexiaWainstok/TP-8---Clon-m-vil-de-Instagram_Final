@@ -42,7 +42,7 @@ export default function HomeScreen({ navigation }) {
         />
       </View>
 
-      <FooterNav />
+      <FooterNav navigation={navigation} active="home" />
     </SafeAreaView>
   );
 }

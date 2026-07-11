@@ -16,7 +16,19 @@ export default function PostCard({ post, navigation }) {
       <View style={styles.header}>
         <TouchableOpacity
           style={styles.userInfo}
-          onPress={() => navigation.navigate("Profile")}
+          onPress={() =>
+            navigation.navigate("UserProfile", {
+              user: {
+                username: "cat_user",
+                name: "Cat Lover",
+                avatar: "https://i.pravatar.cc/150?img=12",
+                bio: "Fotos de gatos, siestas y bigotes.",
+                followers: "8.432",
+                following: 329,
+              },
+              post,
+            })
+          }
         >
           <Image
             source={{

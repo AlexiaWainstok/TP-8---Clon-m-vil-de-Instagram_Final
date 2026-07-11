@@ -5,6 +5,6 @@ const api = axios.create({
 });
 
 export const getCats = async () => {
-  const response = await api.get("/images/search?limit=10");
+  const response = await api.get("/images/search?limit=12&has_breeds=0");
   return response.data;
 };
