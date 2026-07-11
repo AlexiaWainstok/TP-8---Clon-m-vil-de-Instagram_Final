@@ -9,7 +9,18 @@ import { Feather } from "@expo/vector-icons";
 
 import ActionBar from "./ActionBar";
 
+const AUTHORS = [
+  { username: "michi.luna", name: "Luna Gómez", bio: "Gatos, café y fotos sin filtro.", followers: "12.4k", following: 301, avatar: "https://i.pravatar.cc/150?img=5" },
+  { username: "bigotes.ba", name: "Sofi Martín", bio: "Rescatando michis en Buenos Aires.", followers: "7.890", following: 418, avatar: "https://i.pravatar.cc/150?img=9" },
+  { username: "gatito.nube", name: "Nico Pérez", bio: "Una vida mejor con pelos de gato.", followers: "4.216", following: 189, avatar: "https://i.pravatar.cc/150?img=11" },
+  { username: "patas.y.siesta", name: "Vale Ruiz", bio: "Fotos, siestas y mucho ronroneo.", followers: "9.102", following: 257, avatar: "https://i.pravatar.cc/150?img=32" },
+  { username: "clubdelmichi", name: "Tomás Díaz", bio: "Contenido para amantes de los gatos.", followers: "15.8k", following: 502, avatar: "https://i.pravatar.cc/150?img=14" },
+];
+
 export default function PostCard({ post, navigation }) {
+  const index = post.id.split("").reduce((total, character) => total + character.charCodeAt(0), 0) % AUTHORS.length;
+  const author = AUTHORS[index];
+
   return (
     <View style={styles.container}>
 
@@ -18,27 +29,20 @@ export default function PostCard({ post, navigation }) {
           style={styles.userInfo}
           onPress={() =>
             navigation.navigate("UserProfile", {
-              user: {
-                username: "cat_user",
-                name: "Cat Lover",
-                avatar: "https://i.pravatar.cc/150?img=12",
-                bio: "Fotos de gatos, siestas y bigotes.",
-                followers: "8.432",
-                following: 329,
-              },
+              user: author,
               post,
             })
           }
         >
           <Image
             source={{
-              uri: "https://i.pravatar.cc/150?img=12",
+              uri: author.avatar,
             }}
             style={styles.avatar}
           />
 
           <View>
-            <Text style={styles.username}>cat_user</Text>
+            <Text style={styles.username}>{author.username}</Text>
             <Text style={styles.location}>Buenos Aires, Argentina</Text>
           </View>
         </TouchableOpacity>
@@ -65,7 +69,7 @@ export default function PostCard({ post, navigation }) {
       <Text style={styles.likes}>124 Me gusta</Text>
 
       <Text style={styles.caption}>
-        <Text style={styles.bold}>cat_user </Text>
+        <Text style={styles.bold}>{author.username} </Text>
         Disfrutando un hermoso día 😺
       </Text>
     </View>

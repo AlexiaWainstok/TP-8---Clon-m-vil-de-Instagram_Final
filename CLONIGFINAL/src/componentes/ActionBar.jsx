@@ -1,11 +1,14 @@
 import { View, StyleSheet, TouchableOpacity } from "react-native";
 import { Feather, AntDesign } from "@expo/vector-icons";
+import { useState } from "react";
 
-export default function ActionBar({ liked, onToggleLike }) {
+export default function ActionBar() {
+  const [liked, setLiked] = useState(false);
+
   return (
     <View style={styles.container}>
       <View style={styles.left}>
-        <TouchableOpacity accessibilityLabel="Me gusta" onPress={onToggleLike}>
+        <TouchableOpacity accessibilityLabel="Me gusta" onPress={() => setLiked((value) => !value)}>
           {liked ? <AntDesign name="heart" size={27} color="#ed4956" /> : <Feather name="heart" size={27} color="#111" />}
         </TouchableOpacity>
         <TouchableOpacity accessibilityLabel="Comentar"><Feather name="message-circle" size={26} style={styles.icon} /></TouchableOpacity>
